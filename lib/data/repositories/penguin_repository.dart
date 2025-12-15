@@ -9,7 +9,7 @@ import 'api_interface.dart';
 class PenguinRepository extends ApiInterface {
   static const String _baseUrl = 'https://penguin.sjsharivker.workers.dev/api';
 
-  // По README API (species параметр). :contentReference[oaicite:1]{index=1}
+  // По README API (species параметр).
   static const List<String> _species = <String>[
     'emperor',
     'chinstrap',
