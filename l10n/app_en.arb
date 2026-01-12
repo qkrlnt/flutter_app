@@ -1,0 +1,12 @@
+{
+  "@@locale": "en",
+
+  "title": "Penguins",
+  "searchHint": "Search penguins…",
+  "emptyList": "List is empty",
+  "notFound": "Nothing found",
+  "refresh": "Refresh",
+  "retry": "Retry",
+  "liked": "Add to favourites",
+  "disliked": "Deleted from favourites"
+}

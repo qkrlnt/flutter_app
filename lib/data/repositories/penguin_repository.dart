@@ -76,21 +76,13 @@ class PenguinRepository extends ApiInterface {
   }
 
   Future<CardData?> _fetchOne({String? species}) async {
-    final uri = Uri.parse(_baseUrl).replace(
-      queryParameters: {
-        if (species != null && species.isNotEmpty) 'species': species,
-      },
-    );
+    final uri = Uri.parse(
+      _baseUrl,
+    ).replace(queryParameters: {if (species != null && species.isNotEmpty) 'species': species});
 
     try {
       final response = await http
-          .get(
-        uri,
-        headers: const {
-          'accept': 'application/json',
-          'user-agent': 'Mozilla/5.0',
-        },
-      )
+          .get(uri, headers: const {'accept': 'application/json', 'user-agent': 'Mozilla/5.0'})
           .timeout(const Duration(seconds: 10));
 
       // ✅ принимаем любой 2xx (у вас как раз 201)

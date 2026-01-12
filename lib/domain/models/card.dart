@@ -7,9 +7,9 @@ class CardData {
   final String? imageUrl;
 
   CardData(
-      this.text, {
-        required this.descriptionText,
-        this.icon = Icons.ac_unit_outlined,
-        this.imageUrl,
-      });
+    this.text, {
+    required this.descriptionText,
+    this.icon = Icons.ac_unit_outlined,
+    this.imageUrl,
+  });
 }

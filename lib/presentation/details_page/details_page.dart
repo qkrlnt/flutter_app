@@ -5,12 +5,7 @@ class DetailPage extends StatelessWidget {
   final String description;
   final String? imageUrl;
 
-  const DetailPage({
-    super.key,
-    required this.title,
-    required this.description,
-    this.imageUrl,
-  });
+  const DetailPage({super.key, required this.title, required this.description, this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -29,19 +24,15 @@ class DetailPage extends StatelessWidget {
                   child: Image.network(
                     imageUrl!,
                     fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => const Center(
-                      child: Icon(Icons.broken_image, size: 64),
-                    ),
+                    errorBuilder: (_, __, ___) =>
+                        const Center(child: Icon(Icons.broken_image, size: 64)),
                   ),
                 ),
               )
             else
               const Center(child: Icon(Icons.image_not_supported, size: 64)),
             const SizedBox(height: 16),
-            Text(
-              description,
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
+            Text(description, style: Theme.of(context).textTheme.titleMedium),
             const SizedBox(height: 16),
             const Text(
               'Пингвины — нелетающие морские птицы. Они отлично плавают и ныряют, '

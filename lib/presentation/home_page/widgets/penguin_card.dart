@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pmu/components/extensions/context_x.dart';
 import 'package:pmu/domain/models/card.dart';
 import 'package:pmu/presentation/details_page/details_page.dart';
 
@@ -19,7 +20,7 @@ class _PenguinCardState extends State<PenguinCard> {
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(_isLiked ? 'Добавлено в избранное' : 'Удалено из избранного'),
+        content: Text(_isLiked ? context.locale.liked : context.locale.disliked),
         duration: const Duration(milliseconds: 900),
       ),
     );
@@ -52,17 +53,17 @@ class _PenguinCardState extends State<PenguinCard> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                width: 120,
-                height: 120,
-                child: d.imageUrl == null || d.imageUrl!.isEmpty
-                    ? const Center(child: Icon(Icons.image_not_supported))
-                    : Image.network(
-                        d.imageUrl!,
-                        fit: BoxFit.cover,
-                        errorBuilder: (_, __, ___) =>
-                            const Center(child: Icon(Icons.broken_image)),
-                      ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: SizedBox(
+                  height: 140,
+                  width: 100,
+                  child: Image.network(
+                    d.imageUrl ?? 'https://via.placeholder.com/100x140?text=Penguin',
+                    fit: BoxFit.cover,
+                    errorBuilder: (_, __, ___) => const Placeholder(),
+                  ),
+                ),
               ),
               Expanded(
                 child: Padding(
@@ -76,34 +77,18 @@ class _PenguinCardState extends State<PenguinCard> {
                           Expanded(
                             child: Text(
                               d.text,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
-                              ),
+                              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                             ),
                           ),
                           IconButton(
                             onPressed: _toggleLike,
-                            icon: Icon(
-                              _isLiked ? Icons.favorite : Icons.favorite_border,
-                            ),
+                            icon: Icon(_isLiked ? Icons.favorite : Icons.favorite_border),
                           ),
                         ],
                       ),
-                      const SizedBox(height: 6),
-                      Text(
-                        d.descriptionText,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
+                      Text(d.descriptionText, maxLines: 2, overflow: TextOverflow.ellipsis),
                       const SizedBox(height: 8),
-                      Row(
-                        children: [
-                          Icon(d.icon, size: 18),
-                          const SizedBox(width: 6),
-                          const Text('Открыть'),
-                        ],
-                      ),
+                      Row(children: [Icon(d.icon, size: 18), const SizedBox(width: 6)]),
                     ],
                   ),
                 ),

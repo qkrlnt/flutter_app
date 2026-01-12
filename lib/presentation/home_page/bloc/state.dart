@@ -17,19 +17,16 @@ class HomeState {
     final q = query.trim().toLowerCase();
     if (q.isEmpty) return items;
 
-    return items.where((c) {
-      final t = c.text.toLowerCase();
-      final d = c.descriptionText.toLowerCase();
-      return t.contains(q) || d.contains(q);
-    }).toList(growable: false);
+    return items
+        .where((c) {
+          final t = c.text.toLowerCase();
+          final d = c.descriptionText.toLowerCase();
+          return t.contains(q) || d.contains(q);
+        })
+        .toList(growable: false);
   }
 
-  HomeState copyWith({
-    List<CardData>? items,
-    String? query,
-    bool? isLoading,
-    String? error,
-  }) {
+  HomeState copyWith({List<CardData>? items, String? query, bool? isLoading, String? error}) {
     return HomeState(
       items: items ?? this.items,
       query: query ?? this.query,

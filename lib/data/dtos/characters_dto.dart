@@ -8,8 +8,7 @@ class CharactersDto {
 
   const CharactersDto({this.data});
 
-  factory CharactersDto.fromJson(Map<String, dynamic> json) =>
-      _$CharactersDtoFromJson(json);
+  factory CharactersDto.fromJson(Map<String, dynamic> json) => _$CharactersDtoFromJson(json);
 }
 
 @JsonSerializable(createToJson: false)
@@ -20,8 +19,7 @@ class CharacterDataDto {
 
   const CharacterDataDto({this.id, this.type, this.attributes});
 
-  factory CharacterDataDto.fromJson(Map<String, dynamic> json) =>
-      _$CharacterDataDtoFromJson(json);
+  factory CharacterDataDto.fromJson(Map<String, dynamic> json) => _$CharacterDataDtoFromJson(json);
 }
 
 @JsonSerializable(createToJson: false)
